@@ -1,23 +1,32 @@
-group "all" {
-  targets = ["mpich", "openmpi"]
+group "default" {
+  targets = ["mpich"]
 }
 
-variable "H5PY_VERSION" {
-  default = "3.13.0"
+variable "HDF5_VERSION" {
+  default = "1.14.6"
 }
 
 target "mpich" {
-  dockerfile = "Dockerfile"
-  platforms = ["linux/amd64", "linux/arm64"]
-  tags = ["docker.io/astropatty/parallel-h5py:${H5PY_VERSION}-mpich"]
-}
+  name = "mpich-${item.major}"
+  matrix = {
+    item = [
+      {
+        major = 4
+        version = "4.1.2"
 
-target "openmpi" {
+      },
+      {
+        major = 3
+        version = "3.4.3"
+      }
+    ]
+  }
+
   dockerfile = "Dockerfile"
   platforms = ["linux/amd64", "linux/arm64"]
-  tags = ["docker.io/astropatty/parallel-h5py:${H5PY_VERSION}-openmpi"]
+  tags = ["docker.io/astropatty/parallel-h5py:mpich-${item.major}"]
   args = {
-    MPI_IMPL = "openmpi-bin libopenmpi-dev"
+    MPICH_VERSION = item.version
   }
 }
 

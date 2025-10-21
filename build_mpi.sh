@@ -1,6 +1,5 @@
 #!/bin/bash
 
-MPICH_VERSION="3.4.3"
 MPICH_MAKE_OPTIONS="-j 4" # Assuming 4 cores, adjust if needed
 
 # Exit on error
@@ -44,7 +43,7 @@ echo "$(which mpicc)"
 
 #echo "--- Installing mpi4py ---"
 # Ensure pip uses the correct MPI environment
-#MPICC=$(which mpicc) MPICXX=$(which mpicxx) pip install mpi4py
+MPICC=$(which mpicc) MPICXX=$(which mpicxx) pip install mpi4py
 
 #### BUILD FILES ####
 # Ensure the source file exists before trying to compile

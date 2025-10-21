@@ -1,11 +1,11 @@
 FROM python:3.13
-ARG MPI_IMPL=mpich
+ARG MPICH_VERSION="3.4.3"
+ARG HDF5_VERSION="1.14.6"
 
 RUN apt-get update && apt-get -y install wget make
 COPY ./build_mpi.sh ./build_mpi.sh
-RUN sh build_mpi.sh
+RUN MPICH_VERSION=${MPICH_VERSION} sh build_mpi.sh
 
-ARG HDF5_VERSION="1.14.6"
 ARG HDF5_LIB="https://github.com/HDFGroup/hdf5/releases/download/hdf5_${HDF5_VERSION}/hdf5.tar.gz"
 
 

@@ -40,7 +40,8 @@ jobs:
         run: |
           docker buildx bake \
             --set "*.platform=${{ matrix.platform }}" \
-            --set "*.output=type=image,push-by-digest=true,name-canonical=true,push=true" \
+            --set "*.tags=" \
+            --set "*.output=type=image,name=docker.io/astropatty/parallel-h5py,push-by-digest=true,name-canonical=true,push=true" \
             --metadata-file /tmp/bake-metadata.json
 
       - name: Upload digest metadata

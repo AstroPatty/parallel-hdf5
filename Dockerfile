@@ -1,8 +1,10 @@
-FROM python:3.13
+ARG PYTHON_VERSION="3.12"
+FROM python:${PYTHON_VERSION}-slim
+
 ARG MPICH_VERSION="3.4.3"
 ARG HDF5_VERSION="1.14.6"
 
-RUN apt-get update && apt-get -y install wget make
+RUN apt-get update && apt-get -y install build-essential wget
 COPY ./build_mpi.sh ./build_mpi.sh
 RUN MPICH_VERSION=${MPICH_VERSION} sh build_mpi.sh
 

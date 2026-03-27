@@ -3,6 +3,7 @@ Parallel HDF5 Container
 
 This repository contains resources to build a container with parallel hdf5 support with MPICH, designed to be used from python. It also includes a copy of h5py and mpi4py.
 
+These containers are designed to be used on HPC systems, where the MPI library inside the container will be replaced with the equivalent library on the host machine. 
 
 Current version information
 ===========================

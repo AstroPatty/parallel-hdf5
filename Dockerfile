@@ -1,6 +1,12 @@
-ARG PYTHON_VERSION="3.12"
-FROM python:${PYTHON_VERSION}-slim
+FROM ubuntu:24.04
 
+# Install Python manually
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip python3-venv && \
+    ln -s /usr/bin/python3 /usr/bin/python
+
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 ARG MPICH_VERSION="3.4.3"
 ARG HDF5_VERSION="1.14.6"
 

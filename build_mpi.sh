@@ -43,7 +43,7 @@ echo "$(which mpicc)"
 
 #echo "--- Installing mpi4py ---"
 # Ensure pip uses the correct MPI environment
-MPICC=$(which mpicc) MPICXX=$(which mpicxx) pip install mpi4py
+MPICC=$(which mpicc) MPICXX=$(which mpicxx) uv pip install --system mpi4py
 
 #### BUILD FILES ####
 # Ensure the source file exists before trying to compile

@@ -9,6 +9,9 @@ RUN apt-get update && apt-get -y install build-essential wget
 ADD https://astral.sh/uv/install.sh /uv-installer.sh
 RUN UV_INSTALL_DIR=/usr/local/bin sh /uv-installer.sh && rm /uv-installer.sh
 RUN uv venv --python ${PYTHON_VERSION} /opt/venv
+
+ENV VIRTUAL_ENV=/opt/venv
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 ARG HDF5_VERSION="1.14.6"
@@ -26,6 +29,6 @@ RUN CC=/mpich/install/bin/mpicc ./configure --prefix /usr/local --enable-paralle
 
 WORKDIR /app
 RUN rm -rf /install
-RUN CC=/mpich/install/bin/mpicc HDF5_MPI="ON" HDF5_DIR="/usr/local" uv pip install --system --no-binary=h5py h5py
+RUN CC=/mpich/install/bin/mpicc HDF5_MPI="ON" HDF5_DIR="/usr/local" uv pip install --no-binary=h5py h5py
 
 

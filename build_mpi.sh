@@ -41,9 +41,6 @@ export LD_LIBRARY_PATH=/mpich/install/lib:$LD_LIBRARY_PATH
 echo "--- Verifying mpicc Path ---"
 echo "$(which mpicc)"
 
-#echo "--- Installing mpi4py ---"
-# Ensure pip uses the correct MPI environment
-MPICC=$(which mpicc) MPICXX=$(which mpicxx) uv pip install mpi4py
 
 #### BUILD FILES ####
 # Ensure the source file exists before trying to compile

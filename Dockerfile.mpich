@@ -1,0 +1,11 @@
+FROM ubuntu:24.04
+
+ARG MPICH_VERSION="4.1.2"
+
+RUN apt-get update && apt-get -y install build-essential wget
+
+COPY ./build_mpi.sh ./build_mpi.sh
+RUN MPICH_VERSION=${MPICH_VERSION} sh build_mpi.sh
+
+ENV PATH="/mpich/install/bin:$PATH"
+ENV LD_LIBRARY_PATH="/mpich/install/lib:$LD_LIBRARY_PATH"

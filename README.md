@@ -77,6 +77,7 @@ Then set the following environment variable
 ```bash
 export APPTAINERENV_LD_LIBRARY_PATH="$CRAY_LD_LIBRARY_PATH:$LD_LIBRARY_PATH:/opt/cray/pe/lib64:/opt/cray/pals/1.7/lib:/usr/hostlib64"
 export ADDITIONAL_CONTAINER_FLAGS="-B /opt/cray -B /var/run/palsd/ -B /usr/lib64:/usr/hostlib64" 
+export MPICH_SMP_SINGLE_COPY_MODE=NONE
 ```
 
 Then download the image, convert it to the apptainer format, and run it

@@ -24,8 +24,8 @@ target "mpich-build" {
   dockerfile = "Dockerfile.mpich"
   platforms  = ["linux/amd64", "linux/arm64"]
   tags = [
-    "docker.io/astropatty/mpich:mpich-${item.mpich_version}",
-    "docker.io/astropatty/mpich:mpich-${item.mpich_major}",
+    "docker.io/astropatty/mpich:mpich${item.mpich_version}",
+    "docker.io/astropatty/mpich:mpich${item.mpich_major}",
   ]
   args = {
     MPICH_VERSION = item.mpich_version
@@ -54,13 +54,13 @@ target "python-build" {
   dockerfile = "Dockerfile.python"
   platforms  = ["linux/amd64", "linux/arm64"]
   tags = [
-    "docker.io/astropatty/mpi4py:mpich-${item.mpich_version}-py${item.python_version}",
-    "docker.io/astropatty/mpi4py:mpich-${item.mpich_major}-py${item.python_version}",
+    "docker.io/astropatty/mpi4py:mpich${item.mpich_version}-py${item.python_version}",
+    "docker.io/astropatty/mpi4py:mpich${item.mpich_major}-py${item.python_version}",
   ]
   args = {
     MPICH_VERSION  = item.mpich_version
     PYTHON_VERSION = item.python_version
-    BASE_IMAGE     = "docker.io/astropatty/mpich:mpich-${item.mpich_version}"
+    BASE_IMAGE     = "docker.io/astropatty/mpich:mpich${item.mpich_version}"
   }
 }
 
@@ -86,14 +86,14 @@ target "h5py-build" {
   dockerfile = "Dockerfile.h5py"
   platforms  = ["linux/amd64", "linux/arm64"]
   tags = [
-    "docker.io/astropatty/parallel-h5py:mpich-${item.mpich_version}-py${item.python_version}-hdf5-${HDF5_VERSION}",
-    "docker.io/astropatty/parallel-h5py:mpich-${item.mpich_version}-py${item.python_version}",
-    "docker.io/astropatty/parallel-h5py:mpich-${item.mpich_major}-py${item.python_version}",
+    "docker.io/astropatty/parallel-h5py:mpich${item.mpich_version}-py${item.python_version}-hdf5-${HDF5_VERSION}",
+    "docker.io/astropatty/parallel-h5py:mpich${item.mpich_version}-py${item.python_version}",
+    "docker.io/astropatty/parallel-h5py:mpich${item.mpich_major}-py${item.python_version}",
   ]
   args = {
     MPICH_VERSION  = item.mpich_version
     PYTHON_VERSION = item.python_version
     HDF5_VERSION   = HDF5_VERSION
-    BASE_IMAGE     = "docker.io/astropatty/mpi4py:mpich-${item.mpich_version}-py${item.python_version}"
+    BASE_IMAGE     = "docker.io/astropatty/mpi4py:mpich${item.mpich_version}-py${item.python_version}"
   }
 }

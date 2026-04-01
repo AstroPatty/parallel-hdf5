@@ -36,7 +36,7 @@ Images are tagged by their major versions. For example, to get an image that has
 
 ### Python installation
 
-There is a default python installation in the container which is managed by uv. It should function just like any other Python environment, except that you must replace every call to `pip` `uv pip`.
+There is a default python installation in the container which is managed by uv. It should function just like any other Python environment, except that you must replace every call to `pip` with `uv pip`.
 
 e.g. instead of
 

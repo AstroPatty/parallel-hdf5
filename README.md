@@ -54,7 +54,7 @@ These images are primarily designed to be used on HPC systems where MPI communic
 
 This one's easy. Simply call `podman-hpc` with the `--mpi` flag, e.g.
 
-`srun -n 16 podman-hpc run --mpi astropatty/parallel-h5py:mpich-4.1.2-py3.14  python -c "from mpi4py import MPI; print(MPI.COMM_WORLD.Get_rank())"
+`srun -n 16 podman-hpc run --mpi astropatty/parallel-h5py:mpich-4.1.2-py3.14  python -c "from mpi4py import MPI; print(MPI.COMM_WORLD.Get_rank())"`
 
 You should get the numbers 0-15 printed out, but probably in a random order.
 

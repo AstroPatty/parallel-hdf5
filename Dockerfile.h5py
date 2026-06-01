@@ -1,12 +1,13 @@
 ARG BASE_IMAGE="docker.io/astropatty/mpi4py:mpich-4.1.2-py3.13"
 FROM ${BASE_IMAGE}
 
-ARG HDF5_VERSION="1.14.6"
+ARG HDF5_VERSION="2.1.1"
+ARG HDF5_URL="https://github.com/HDFGroup/hdf5/archive/refs/tags/2.1.1.tar.gz"
 
 RUN apt-get update && apt-get -y install wget
 
 WORKDIR /install
-RUN wget https://github.com/HDFGroup/hdf5/releases/download/hdf5_${HDF5_VERSION}/hdf5.tar.gz \
+RUN wget -O hdf5.tar.gz ${HDF5_URL} \
     && tar -xvzf hdf5.tar.gz \
     && mv hdf5-${HDF5_VERSION} hdf5
 

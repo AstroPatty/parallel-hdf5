@@ -16,9 +16,9 @@ mpich:
 
 python: 3.12 -> 3.14
 
-hdf5: 1.14.6 (latest version as of 10/21/2025)
-
-Version 2 of hdf5 will be supported in the future.
+hdf5:
+- 2.1.1 (default)
+- 1.14.6 (tagged)
 
 ## Repos and tagging conventions
 

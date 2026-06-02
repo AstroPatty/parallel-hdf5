@@ -4,7 +4,7 @@ FROM ${BASE_IMAGE}
 ARG HDF5_VERSION="2.1.1"
 ARG HDF5_URL="https://github.com/HDFGroup/hdf5/archive/refs/tags/2.1.1.tar.gz"
 
-RUN apt-get update && apt-get -y install wget
+RUN apt-get update && apt-get -y install cmake wget
 
 WORKDIR /install
 RUN wget -O hdf5.tar.gz ${HDF5_URL} \
@@ -12,9 +12,14 @@ RUN wget -O hdf5.tar.gz ${HDF5_URL} \
     && mv hdf5-${HDF5_VERSION} hdf5
 
 WORKDIR /install/hdf5
-RUN CC=/mpich/install/bin/mpicc ./configure --prefix /usr/local --enable-parallel \
-    && make -j4 \
-    && make install
+RUN cmake -B build \
+      -DCMAKE_INSTALL_PREFIX=/usr/local \
+      -DHDF5_ENABLE_PARALLEL=ON \
+      -DBUILD_SHARED_LIBS=ON \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_C_COMPILER=/mpich/install/bin/mpicc \
+    && cmake --build build -j4 \
+    && cmake --install build
 
 WORKDIR /app
 RUN rm -rf /install

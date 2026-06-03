@@ -4,7 +4,7 @@ FROM ${BASE_IMAGE}
 ARG HDF5_VERSION="2.1.1"
 ARG HDF5_URL="https://github.com/HDFGroup/hdf5/archive/refs/tags/2.1.1.tar.gz"
 
-RUN apt-get update && apt-get -y install cmake wget
+RUN apt-get update && apt-get -y install cmake wget zlib1g-dev
 
 WORKDIR /install
 RUN wget -O hdf5.tar.gz ${HDF5_URL} \
